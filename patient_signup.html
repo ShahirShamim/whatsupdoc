@@ -1,0 +1,28 @@
+<html>
+
+
+<form name="Registration" method="post" action="patient_signup.php" style="border: 1px solid #ccc;">
+<div class="container">
+<h1>Register As Patient</h1>
+<p>Please fill in this form to create an account.</p>
+<hr />
+<p><label for="First Name"><b>firstname</b></label><br /><input name="first_name" required="" type="text" placeholder="Enter first name..." /></p>
+<p><label for="Last Name"><b>lastname</b></label><br /><input name="last_name" required="" type="text" placeholder="Enter last name..." /></p>
+<p><label for="phone">Phone number:</label><br /><input id="phone" name="phone_number" type="number" /></p>
+<p><label for="psw"><b>Password</b></label><br /><input name="password" required="" type="password" placeholder="Enter Password" /></p>
+<p><label for="gender">Gender</label><br /><select id="gender" name="gender">
+<option value="male">Male</option>
+<option value="female">Female</option>
+<option value="other">Other</option>
+</select></p>
+<p><label for="birthday">Date of Birth:</label><br /><input id="birthday" name="date_of_birth" type="date" /></p>
+<p><label for="city">City</label><br /><select id="city" name="city">
+<option value="lahore">Lahore</option>
+<option value="karachi">Karachi</option>
+<option value="islamabad">Islamabad</option>
+</select></p>
+</div>
+<input type="submit" name="button1" class="button" value="Submit  " />
+</form>
+
+</html>
