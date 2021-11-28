@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2021 at 11:55 AM
+-- Generation Time: Nov 28, 2021 at 01:13 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -53,6 +53,15 @@ CREATE TABLE `doctor` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `doctor`
+--
+
+INSERT INTO `doctor` (`doctor_id`, `name`, `phone_number`, `password`, `gender`, `city`, `created_at`) VALUES
+(2, 'Shahir', 3070251725, 'jsdknsdjnfld', 'male', 'lahore', '2021-11-18 16:57:28'),
+(3, 'adnan', 90078601, 'jhsjfdhbw', 'other', 'islamabad', '2021-11-18 18:37:25'),
+(4, '', 0, '', '', '', '2021-11-28 12:08:36');
+
 -- --------------------------------------------------------
 
 --
@@ -68,6 +77,13 @@ CREATE TABLE `doctor_review` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `doctor_review`
+--
+
+INSERT INTO `doctor_review` (`review_id`, `patient_id`, `doctor_id`, `rating`, `feedback`, `created_at`) VALUES
+(1, 2, 2, 5, 'grabbed my balls', '2021-11-28 12:12:12');
+
 -- --------------------------------------------------------
 
 --
@@ -78,11 +94,18 @@ CREATE TABLE `hospital` (
   `hospital_id` int(6) UNSIGNED NOT NULL,
   `name` varchar(30) NOT NULL,
   `phone_number` int(11) UNSIGNED NOT NULL,
+  `city` varchar(15) NOT NULL,
   `latitude` decimal(8,6) NOT NULL,
   `longitude` decimal(9,6) NOT NULL,
-  `type` varchar(12) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hospital`
+--
+
+INSERT INTO `hospital` (`hospital_id`, `name`, `phone_number`, `city`, `latitude`, `longitude`, `created_at`) VALUES
+(1, 'Aga Khan', 4294967295, 'karachi', '32.171372', '34.288424', '2021-11-18 18:19:47');
 
 -- --------------------------------------------------------
 
@@ -113,6 +136,13 @@ CREATE TABLE `medical_history` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `medical_history`
+--
+
+INSERT INTO `medical_history` (`history_id`, `patient_id`, `type`, `details`, `created_at`) VALUES
+(1, 2, 'diagnosis', 'khara nai ho raha tha, boys nai cream kara di', '2021-11-28 11:42:26');
+
 -- --------------------------------------------------------
 
 --
@@ -137,7 +167,9 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`patient_id`, `first_name`, `last_name`, `phone_number`, `password`, `gender`, `date_of_birth`, `city`, `created_at`) VALUES
 (1, 'Shahir', 'Shamim', 3070251725, '69696969', 'male', '1999-02-16', 'Karachi', '2021-11-17 17:25:49'),
-(2, 'Laibah', 'Iqbal', 3059119585, '69696969', 'female', '2000-09-06', 'Lahore', '2021-11-17 17:28:30');
+(2, 'Laibah', 'Iqbal', 3059119585, '69696969', 'female', '2000-09-06', 'Lahore', '2021-11-17 17:28:30'),
+(3, 'first_name', 'last_name', 1, 'password', 'shemale', '2021-11-17', 'Guggu Nanak', '2021-11-18 12:39:54'),
+(4, 'sndjs', 'jsdnksj', 3067891234, 't@l!@!HZNr1W', 'male', '2007-03-04', 'lahore', '2021-11-18 16:49:25');
 
 -- --------------------------------------------------------
 
@@ -284,19 +316,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `doctor_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `doctor_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `doctor_review`
 --
 ALTER TABLE `doctor_review`
-  MODIFY `review_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
-  MODIFY `hospital_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `hospital_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `hospital_review`
@@ -308,13 +340,13 @@ ALTER TABLE `hospital_review`
 -- AUTO_INCREMENT for table `medical_history`
 --
 ALTER TABLE `medical_history`
-  MODIFY `history_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `history_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patient_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `patient_id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `prescription`
