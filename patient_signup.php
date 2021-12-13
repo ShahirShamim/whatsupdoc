@@ -35,7 +35,8 @@
 
 		$result = mysqli_query($db,$insert);
 		if($result){
-			echo json_encode("true");
+			header("Location: index.php");
+			exit;
 		}else{
 			echo json_encode("false");
 		}

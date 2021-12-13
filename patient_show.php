@@ -3,8 +3,6 @@
 	if(!$db){
 		echo "Database connection failed";
 	}
-	// $user_id = 'wah';
-	// $password = 'hammad123';
 
 	$sql = "SELECT * FROM patient";
 	$result = mysqli_query($db , $sql);

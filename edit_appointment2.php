@@ -1,0 +1,47 @@
+<?php
+	$db = mysqli_connect('localhost' , 'root' , '', 'whatsupdoc');
+	if(!$db){
+		echo "Database connection failed";
+	}
+
+	$hospital_id = $_POST['hospital'];
+  $date = $_POST['slot_date'];
+  $time = $_POST['time'];
+  session_start();
+  $pid = $_SESSION['varid'];
+  $d_id = $_GET['Key'];
+	$s_id = $_POST['slot'];
+	// $fullname = 'wahid';
+	// $user_id = 'wahid111';
+	// $email = 'wahid@gmail.com';
+	// $password = 'wahid123';
+	// $phonenumber = '123456';
+	// $validity = 1;
+
+		$sql2 = "SELECT slot_id from slot where slot.hospital_id = '$hospital_id' and slot.doctor_id = '$d_id' and slot.date = '$date' and slot.timing = '$time'";
+		$results2 = mysqli_query($db , $sql2);
+
+		$data = mysqli_fetch_array($results2);
+		if($data['slot_id'] != $s_id)
+		{
+			$update = "UPDATE slot SET appointment_status = 'booked', patient_id='$pid' WHERE hospital_id = '$hospital_id' AND doctor_id = '$d_id' AND date = '$date' AND timing = '$time'";
+			$update2 = "UPDATE slot SET appointment_status = 'available', patient_id=NULL WHERE slot_id = '$s_id''";
+			$result = mysqli_query($db,$update);
+			$result2 = mysqli_query($db,$update2);
+			if($result){
+				header("location: patient.php");
+			}else{
+				echo json_encode("false");
+			}
+		}else{
+			header("location: patient.php");
+		}
+
+
+		// $insert = "INSERT INTO user_authentication ( user_id,  password) VALUES ( '$user_id', '$password')";
+
+
+
+
+
+?>

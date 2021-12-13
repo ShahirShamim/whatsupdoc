@@ -1,44 +1,22 @@
-<?php
-	$db = mysqli_connect('localhost' , 'root' , '', 'whatsupdoc');
-	if(!$db){
-		echo "Database connection failed";
-	}
+<html>
 
-	$patient_id = $_POST['patient_id'];
-	$hospital_id = $_POST['hospital_id'];
-  $rating = $_POST['rating'];
-	$feedback = $_POST['feedback'];
+<?php $h_id = $_GET['var1']; ?>
+<form name="Registration" method="post" action="hospital_review2.php" style="border: 1px solid #ccc;">
+<input type="hidden" name="hospital" value="<?php echo $h_id; ?>" />
+<div class="container">
+<h1>Leave Review</h1>
+<p>Please fill in the following details.</p>
+<hr/>
+<p><label for="feedback">feedback:</label><br /><input id="feedback" name="feedback" type="text" /></p>
+<p><label for="rating">rating</label><br /><select id="rating" name="rating">
+<option value=1>1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+</select></p>
+</div>
+<input type="submit" name="button1" class="button" value="Submit  " />
+</form>
 
-	// $fullname = 'wahid';
-	// $user_id = 'wahid111';
-	// $email = 'wahid@gmail.com';
-	// $password = 'wahid123';
-	// $phonenumber = '123456';
-	// $validity = 1;
-
-
-	$sql = "SELECT * FROM hospital WHERE hospital_id = '".$hospital_id."'";
-
-
-	$result = mysqli_query($db , $sql);
-	$data = mysqli_fetch_array($result);
-
-	if($data=NULL){
-		echo json_encode("no hospital");
-	}else{
-		$insert = "INSERT INTO `hospital_review`(`patient_id`, `hospital_id`, `rating`, `feedback`)		VALUES ('$patient_id','$hospital_id','$rating','$feedback')";
-
-		// $insert = "INSERT INTO user_authentication ( user_id,  password) VALUES ( '$user_id', '$password')";
-
-		$result = mysqli_query($db,$insert);
-		if($result){
-			echo json_encode("Review Submitted");
-
-		}else{
-			echo json_encode("Review failed :(");
-		}
-	}
-
-
-
-?>
+</html>

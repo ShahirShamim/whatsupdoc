@@ -1,3 +1,7 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css"  href="/main.css"/>
+</head>
 <?php
 	$db = mysqli_connect('localhost' , 'root' , '' , 'whatsupdoc');
 	if(!$db){
@@ -11,13 +15,21 @@
 	// $password = 'hammad123';
 
 	$sql = "SELECT * FROM patient WHERE phone_number='".$phone_number."' AND password='".$password."'";
-	$result = mysqli_query($db , $sql);
+	$result = $db->query($sql);
 	$data = mysqli_fetch_array($result);
+
 	if($data==NULL){
-		echo json_encode("Welcome!");
+    echo json_encode("Sign in failed :(");
+    exit;
 	}else{
-		echo json_encode("Sign in failed :(	");
+    session_start();
+    $_SESSION['varid'] = $data['patient_id'];
+    $_SESSION['varphone'] = $data['phone_number'];
+    $_SESSION['varname'] = $data['first_name'];
+    $_SESSION['varcity'] = $data['city'];
+    header("location: patient.php");
 	}
 
 
 ?>
+</html>
