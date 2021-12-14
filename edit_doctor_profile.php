@@ -3,12 +3,13 @@
   <link rel="stylesheet" type="text/css" href="main.css?v=<?php echo time(); ?>" media=”screen” />
 </head>
 
-<form name="Registration" method="post" action="doctor_signup.php" style="border: 1px solid #ccc;">
+<?php $d_id = $_GET['var1']; ?>
+
+<form name="Registration" method="post" action="edit_doctor_profile.php" style="border: 1px solid #ccc;">
 <div class="container">
-<h1>Register As Patient</h1>
-<p>Please fill in this form to create an account.</p>
-<hr />
-<p><label for="Name"><b>firstname</b></label><br /><input name="name" required="" type="text" placeholder="Enter name..." /></p>
+<h1>Edit Profile</h1>
+<hr/>
+<input type="hidden" name="doctor" value="<?php echo $d_id; ?>" />
 <p><label for="phone">Phone number:</label><br /><input id="phone" name="phone_number" type="number" /></p>
 <p><label for="psw"><b>Password</b></label><br /><input name="password" required="" type="password" placeholder="Enter Password" /></p>
 <p><label for="gender">Gender</label><br /><select id="gender" name="gender">

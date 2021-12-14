@@ -9,7 +9,10 @@
   $password = $_POST['password'];
 	$gender = $_POST['gender'];
 	$city = $_POST['city'];
-
+	$specialization = $_POST['specialization'];
+	$specinst = $_POST['specinst'];
+	session_start();
+	$h_id = $_SESSION['varhospital'];
 	// $fullname = 'wahid';
 	// $user_id = 'wahid111';
 	// $email = 'wahid@gmail.com';
@@ -26,17 +29,29 @@
 
 	if($data!=NULL){
 		echo json_encode("account already exists");
+		?>
+		<a href="admin.php">Go back to mainpage</a>
+		<?php
 	}else{
 		$insert = "INSERT INTO doctor (name, phone_number, password, gender, city) VALUES ('$name', '$phone_number', '$password', '$gender', '$city')";
-
+		$sql2 = "SELECT * FROM doctor WHERE phone_number = '".$phone_number."'";
+		$result = mysqli_query($db,$q) or die(mysqli_error($db));
+		$row = mysqli_fetch_assoc($result)
+		$insert2 = "INSERT INTO specialization (doctor_id, hospital_id, name, specialization_institute) VALUES ('$row['doctor_id']','$h_id','$specialization','$specinst')";
 		// $insert = "INSERT INTO user_authentication ( user_id,  password) VALUES ( '$user_id', '$password')";
 
-		$result = mysqli_query($db,$insert);
-		if($result){
-			echo json_encode("You have signed up!");
-			
+		$result2 = mysqli_query($db,$insert);
+		$result3 = mysqli_query($db,$insert2);
+		if($result2 & $result3){
+			echo json_encode("Doctor Regsitered!");
+			?>
+			<a href="doc_hos_view.php">View your reviews</a>
+			<?php
 		}else{
 			echo json_encode("Sign up failed :(");
+			?>
+			<a href="admin.php">Go back to mainpage</a>
+			<?php
 		}
 	}
 

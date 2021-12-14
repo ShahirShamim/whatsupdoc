@@ -16,7 +16,11 @@
 	if($data==NULL){
 		echo json_encode("false");
 	}else{
-		echo json_encode("true");
+		session_start();
+    $_SESSION['varid'] = $data['admin_id'];
+    $_SESSION['varhospital'] = $data['hospital_id'];
+    $_SESSION['varname'] = $data['name'];
+    header("location: admin.php");
 	}
 
 

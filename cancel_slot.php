@@ -8,7 +8,7 @@
 
 
 
-		$update = "UPDATE slot SET slot_status = 'closed', appointment_status = 'available' WHERE slot_id = '$s_id'";
+		$update = "UPDATE slot SET slot_status = 'closed', patient_id = NULL, appointment_status = 'available' WHERE slot_id = '$s_id'";
 
 		// $insert = "INSERT INTO user_authentication ( user_id,  password) VALUES ( '$user_id', '$password')";
 
