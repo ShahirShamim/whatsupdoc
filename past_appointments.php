@@ -17,7 +17,7 @@
 </thead>
 <tbody>
 <?php
-    $db = mysqli_connect('localhost' , 'root' , '', 'whatsupdoc');
+$db = mysqli_connect('localhost' , 'id17962441_whatsupdoc_db' , ')sNRJ7&>_?z>!}RZ' , 'id17962441_whatsupdoc');
     if (!$db) {
         die(mysql_error());
     }
