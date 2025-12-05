@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+
+  db:
+    image: mysql:5.7 # Old project likely needs 5.7, 8.0 might break authentication plugins
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: whatsupdoc
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
+    platform: linux/amd64 # Ensure compatibility on M1/M2 Macs if needed
